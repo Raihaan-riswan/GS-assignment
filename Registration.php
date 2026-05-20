@@ -104,31 +104,38 @@
         <form>
             <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                <p id="fullNameError" class="error"></p>
             </div>
             <div class="form-group">
                 <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" name="dob" required>
+                <input type="date" id="dob" name="dob">
+                <p id="dobError" class="error"></p>
             </div>
             <div class="form-group">
                 <label for="nid">National Identity Number</label>
-                <input type="text" id="nid" name="nid" placeholder="Enter your national identity number" required>
+                <input type="text" id="nid" name="nid" placeholder="Enter your national identity number">
+                <p id="nidError" class="error"></p>
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
-                <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+                <textarea id="address" name="address" placeholder="Enter your address"></textarea>
+                <p id="addressError" class="error"></p>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                <p id="phoneError" class="error"></p>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <p id="emailError" class="error"></p>
             </div>
             <div class="form-group">
                 <label for="occupation">Occupation</label>
-                <input type="text" id="occupation" name="occupation" placeholder="Enter your occupation" required>
+                <input type="text" id="occupation" name="occupation" placeholder="Enter your occupation">
+                <p id="occupationError" class="error"></p>
             </div>
             <div class="form-group">
                 <label>Gender</label>
@@ -140,7 +147,8 @@
             </div>
             <div class="form-group">
                 <label for="regDate">Registered Date</label>
-                <input type="date" id="regDate" name="regDate" required>
+                <input type="date" id="regDate" name="regDate">
+                <p id="regDateError" class="error"></p>
             </div>
             <div class="button-row">
                 <button type="submit">Submit Registration</button>
