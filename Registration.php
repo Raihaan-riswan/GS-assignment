@@ -229,4 +229,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </main>
 </body>
 
+<?php
+    $fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = $regDate = "";
+  
+    
+
+
 </html>
