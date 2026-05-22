@@ -1,7 +1,4 @@
 ﻿<?php
-session_start();
-require_once 'config.php';
-
 $nameErr = $dobErr = $nidErr = $addressErr = $phoneErr = $emailErr = $occupationErr = $genderErr = $regDateErr = "";
 $fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = $regDate = "";
 
@@ -9,62 +6,59 @@ function test_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
-    $fullName = test_input(trim($_POST["fullName"] ?? ""));
-    $dob = test_input(trim($_POST["dob"] ?? ""));
-    $nid = test_input(trim($_POST["nid"] ?? ""));
-    $address = test_input(trim($_POST["address"] ?? ""));
-    $phone = test_input(trim($_POST["phone"] ?? ""));
-    $email = test_input(trim($_POST["email"] ?? ""));
-    $occupation = test_input(trim($_POST["occupation"] ?? ""));
-    $gender = test_input(trim($_POST["gender"] ?? ""));
-    $regDate = test_input(trim($_POST["regDate"] ?? ""));
-
-    if ($fullName === "") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (empty($_POST["fullName"])) {
         $nameErr = "Full Name is required";
+    } else {
+        $fullName = test_input($_POST["fullName"]);
     }
-    if ($dob === "") {
+
+    if (empty($_POST["dob"])) {
         $dobErr = "Date of Birth is required";
+    } else {
+        $dob = test_input($_POST["dob"]);
     }
-    if ($nid === "") {
+
+    if (empty($_POST["nid"])) {
         $nidErr = "National Identity Number is required";
+    } else {
+        $nid = test_input($_POST["nid"]);
     }
-    if ($address === "") {
+
+    if (empty($_POST["address"])) {
         $addressErr = "Address is required";
+    } else {
+        $address = test_input($_POST["address"]);
     }
-    if ($phone === "") {
+
+    if (empty($_POST["phone"])) {
         $phoneErr = "Phone number is required";
+    } else {
+        $phone = test_input($_POST["phone"]);
     }
-    if ($email === "") {
+
+    if (empty($_POST["email"])) {
         $emailErr = "Email is required";
+    } else {
+        $email = test_input($_POST["email"]);
     }
-    if ($occupation === "") {
+
+    if (empty($_POST["occupation"])) {
         $occupationErr = "Occupation is required";
+    } else {
+        $occupation = test_input($_POST["occupation"]);
     }
-    if ($gender === "") {
+
+    if (empty($_POST["gender"])) {
         $genderErr = "Gender is required";
+    } else {
+        $gender = test_input($_POST["gender"]);
     }
-    if ($regDate === "") {
+
+    if (empty($_POST["regDate"])) {
         $regDateErr = "Registered Date is required";
-    }
-
-    if ($nameErr === "" && $dobErr === "" && $nidErr === "" && $addressErr === "" && $phoneErr === "" && $emailErr === "" && $occupationErr === "" && $genderErr === "" && $regDateErr === "") {
-        $gender = ucfirst(strtolower($gender));
-        $registeredDate = date('Y-m-d H:i:s', strtotime($regDate));
-
-        $sql = "INSERT INTO residents (full_name, dob, nic, address, phone, email, occupation, gender, registered_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssssss", $fullName, $dob, $nid, $address, $phone, $email, $occupation, $gender, $registeredDate);
-
-        if ($stmt->execute()) {
-            echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
-            exit;
-        } else {
-            echo "<script>alert('Registration failed! Please try again.');</script>";
-            error_log('Registration error: ' . $stmt->error);
-        }
-
-        $stmt->close();
+    } else {
+        $regDate = test_input($_POST["regDate"]);
     }
 }
 ?>
@@ -217,19 +211,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
             <div class="form-group">
                 <label>Gender</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="gender" value="Male" <?php echo ($gender === "Male") ? "checked" : ""; ?>>Male</label>
-                    <label><input type="radio" name="gender" value="Female" <?php echo ($gender === "Female") ? "checked" : ""; ?>>Female</label>
-                    <label><input type="radio" name="gender" value="Other" <?php echo ($gender === "Other") ? "checked" : ""; ?>>Other</label>
+                    <label><input type="radio" name="gender" value="male" <?php echo ($gender === "male") ? "checked" : ""; ?>>Male</label>
+                    <label><input type="radio" name="gender" value="female" <?php echo ($gender === "female") ? "checked" : ""; ?>>Female</label>
+                    <label><input type="radio" name="gender" value="other" <?php echo ($gender === "other") ? "checked" : ""; ?>>Other</label>
                 </div>
                 <p class="error"><?php echo $genderErr; ?></p>
             </div>
-            
+          
             <div class="button-row">
-                
-                <button type="submit" name="submit" id ="submit">Submit Registration</button>
+                <button type="submit">Submit Registration</button>
             </div>
-            
         </form>
     </main>
 </body>
+
 </html>
