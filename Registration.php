@@ -1,4 +1,7 @@
 ﻿<?php
+session_start();
+require_once 'config.php';
+
 $nameErr = $dobErr = $nidErr = $addressErr = $phoneErr = $emailErr = $occupationErr = $genderErr = $regDateErr = "";
 $fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = $regDate = "";
 
@@ -6,59 +9,62 @@ function test_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (empty($_POST["fullName"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
+    $fullName = test_input(trim($_POST["fullName"] ?? ""));
+    $dob = test_input(trim($_POST["dob"] ?? ""));
+    $nid = test_input(trim($_POST["nid"] ?? ""));
+    $address = test_input(trim($_POST["address"] ?? ""));
+    $phone = test_input(trim($_POST["phone"] ?? ""));
+    $email = test_input(trim($_POST["email"] ?? ""));
+    $occupation = test_input(trim($_POST["occupation"] ?? ""));
+    $gender = test_input(trim($_POST["gender"] ?? ""));
+    $regDate = test_input(trim($_POST["regDate"] ?? ""));
+
+    if ($fullName === "") {
         $nameErr = "Full Name is required";
-    } else {
-        $fullName = test_input($_POST["fullName"]);
     }
-
-    if (empty($_POST["dob"])) {
+    if ($dob === "") {
         $dobErr = "Date of Birth is required";
-    } else {
-        $dob = test_input($_POST["dob"]);
     }
-
-    if (empty($_POST["nid"])) {
+    if ($nid === "") {
         $nidErr = "National Identity Number is required";
-    } else {
-        $nid = test_input($_POST["nid"]);
     }
-
-    if (empty($_POST["address"])) {
+    if ($address === "") {
         $addressErr = "Address is required";
-    } else {
-        $address = test_input($_POST["address"]);
     }
-
-    if (empty($_POST["phone"])) {
+    if ($phone === "") {
         $phoneErr = "Phone number is required";
-    } else {
-        $phone = test_input($_POST["phone"]);
     }
-
-    if (empty($_POST["email"])) {
+    if ($email === "") {
         $emailErr = "Email is required";
-    } else {
-        $email = test_input($_POST["email"]);
     }
-
-    if (empty($_POST["occupation"])) {
+    if ($occupation === "") {
         $occupationErr = "Occupation is required";
-    } else {
-        $occupation = test_input($_POST["occupation"]);
     }
-
-    if (empty($_POST["gender"])) {
+    if ($gender === "") {
         $genderErr = "Gender is required";
-    } else {
-        $gender = test_input($_POST["gender"]);
+    }
+    if ($regDate === "") {
+        $regDateErr = "Registered Date is required";
     }
 
-    if (empty($_POST["regDate"])) {
-        $regDateErr = "Registered Date is required";
-    } else {
-        $regDate = test_input($_POST["regDate"]);
+    if ($nameErr === "" && $dobErr === "" && $nidErr === "" && $addressErr === "" && $phoneErr === "" && $emailErr === "" && $occupationErr === "" && $genderErr === "" && $regDateErr === "") {
+        $gender = ucfirst(strtolower($gender));
+        $registeredDate = date('Y-m-d H:i:s', strtotime($regDate));
+
+        $sql = "INSERT INTO residents (full_name, dob, nic, address, phone, email, occupation, gender, registered_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssssss", $fullName, $dob, $nid, $address, $phone, $email, $occupation, $gender, $registeredDate);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
+            exit;
+        } else {
+            echo "<script>alert('Registration failed! Please try again.');</script>";
+            error_log('Registration error: ' . $stmt->error);
+        }
+
+        $stmt->close();
     }
 }
 ?>
@@ -211,51 +217,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="form-group">
                 <label>Gender</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="gender" value="male" <?php echo ($gender === "male") ? "checked" : ""; ?>>Male</label>
-                    <label><input type="radio" name="gender" value="female" <?php echo ($gender === "female") ? "checked" : ""; ?>>Female</label>
-                    <label><input type="radio" name="gender" value="other" <?php echo ($gender === "other") ? "checked" : ""; ?>>Other</label>
+                    <label><input type="radio" name="gender" value="Male" <?php echo ($gender === "Male") ? "checked" : ""; ?>>Male</label>
+                    <label><input type="radio" name="gender" value="Female" <?php echo ($gender === "Female") ? "checked" : ""; ?>>Female</label>
+                    <label><input type="radio" name="gender" value="Other" <?php echo ($gender === "Other") ? "checked" : ""; ?>>Other</label>
                 </div>
                 <p class="error"><?php echo $genderErr; ?></p>
             </div>
-            <div class="form-group">
-                <label for="regDate">Registered Date</label>
-                <input type="date" id="regDate" name="regDate" value="<?php echo $regDate; ?>">
-                <p id="regDateError" class="error"><?php echo $regDateErr; ?></p>
-            </div>
+            
             <div class="button-row">
-                <button type="submit" name="submit">Submit Registration</button>
+                
+                <button type="submit" name="submit" id ="submit">Submit Registration</button>
             </div>
+            
         </form>
     </main>
 </body>
-
-<?php
-session_start();
-include "config.php";
-
-if (isset($_POST['submit'])) {
-    $fullName = trim($_POST['fullName']);
-    $dob = trim($_POST['dob']);
-    $nid = trim($_POST['nid']);
-    $address = trim($_POST['address']);
-    $phone = trim($_POST['phone']);
-    $email = trim($_POST['email']);
-    $occupation = trim($_POST['occupation']);
-    $gender = trim($_POST['gender']);
-    $regDate = trim($_POST['regDate']);
-
-    $sql = "INSERT INTO resident_database (fullName, dob, nid, address, phone, email, occupation, gender, regDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssssss", $fullName, $dob, $nid, $address, $phone, $email, $occupation, $gender, $regDate);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
-    } else {
-        echo "<script>alert('Registration failed! Please try again.'); window.location.href='register.php';</script>";
-    }
-
-    $stmt->close();
-}
-?>
-
 </html>
