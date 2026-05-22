@@ -1,6 +1,6 @@
 ﻿<?php
-$nameErr = $dobErr = $nidErr = $addressErr = $phoneErr = $emailErr = $occupationErr = $genderErr = "";
-$fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = "";
+$nameErr = $dobErr = $nidErr = $addressErr = $phoneErr = $emailErr = $occupationErr = $genderErr = $regDateErr = "";
+$fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = $regDate = "";
 
 function test_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <main class="container">
         <h1>Registration Form</h1>
-        <form method="post" action="Registration2.php">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" value="<?php echo $fullName; ?>">
@@ -217,12 +217,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
                 <p class="error"><?php echo $genderErr; ?></p>
             </div>
-          
+            <div class="form-group">
+                <label for="regDate">Registered Date</label>
+                <input type="date" id="regDate" name="regDate" value="<?php echo $regDate; ?>">
+                <p id="regDateError" class="error"><?php echo $regDateErr; ?></p>
+            </div>
             <div class="button-row">
                 <button type="submit">Submit Registration</button>
             </div>
         </form>
     </main>
 </body>
-
+z
 </html>

@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
         $insertStmt->bind_param("ssssssss", $name, $dob, $nid, $address, $phone, $email, $occupation, $gender);
 
         if ($insertStmt->execute()) {
-            header("Location: ./index.php");
+            header("Location: ok.php");
             exit();
         } else {
             echo "<script>alert('User registration failed! Please try again.'); window.location.href='signup.php';</script>";
