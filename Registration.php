@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <main class="container">
         <h1>Registration Form</h1>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="Registration2.php">
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" value="<?php echo $fullName; ?>">
@@ -228,5 +228,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </main>
 </body>
-z
+
 </html>
