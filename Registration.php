@@ -223,15 +223,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <p id="regDateError" class="error"><?php echo $regDateErr; ?></p>
             </div>
             <div class="button-row">
-                <button type="submit">Submit Registration</button>
+                <button type="submit" name="submit">Submit Registration</button>
             </div>
         </form>
     </main>
 </body>
 
 <?php
-    $fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = $regDate = "";
-  <?php
 session_start();
 include "config.php";
 
@@ -245,11 +243,10 @@ if (isset($_POST['submit'])) {
     $occupation = trim($_POST['occupation']);
     $gender = trim($_POST['gender']);
     $regDate = trim($_POST['regDate']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO resident_database (fullName, dob, nid, address, phone, email, occupation, gender, regDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssss", $fullName, $dob, $nid, $address, $phone, $email, $occupation, $gender, $regDate);
+    $stmt->bind_param("sssssssss", $fullName, $dob, $nid, $address, $phone, $email, $occupation, $gender, $regDate);
 
     if ($stmt->execute()) {
         echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
@@ -260,8 +257,5 @@ if (isset($_POST['submit'])) {
     $stmt->close();
 }
 ?>
-
-
-
 
 </html>

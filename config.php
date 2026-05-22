@@ -4,7 +4,7 @@ class Database {
     private $host = 'localhost';
     private $user = 'root';
     private $password = '';
-    private $database = 'resident_database.';
+    private $database = 'resident_database';
     private $conn;
     private static $instance = null;
 
