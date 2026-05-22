@@ -161,6 +161,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             background: #163f61;
         }
 
+        .back-link {
+            display: inline-block;
+            margin: 20px auto 0;
+            padding: 10px 22px;
+            background: #ffffff;
+            color: #1f4e79;
+            border: 2px solid #1f4e79;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .back-link:hover {
+            background: #1f4e79;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
         .error {
             color: #d93025;
             margin-top: 6px;
@@ -225,6 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="button-row">
                 <button type="submit">Submit Registration</button>
             </div>
+            <a class="back-link" href="index.php">Back to Home</a>
         </form>
     </main>
 </body>
