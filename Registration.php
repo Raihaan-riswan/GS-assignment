@@ -231,8 +231,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <?php
     $fullName = $dob = $nid = $address = $phone = $email = $occupation = $gender = $regDate = "";
-  
-    
+  <?php
+session_start();
+include "config.php";
+
+if (isset($_POST['submit'])) {
+    $fullName = trim($_POST['fullName']);
+    $dob = trim($_POST['dob']);
+    $nid = trim($_POST['nid']);
+    $address = trim($_POST['address']);
+    $phone = trim($_POST['phone']);
+    $email = trim($_POST['email']);
+    $occupation = trim($_POST['occupation']);
+    $gender = trim($_POST['gender']);
+    $regDate = trim($_POST['regDate']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO resident_database (fullName, dob, nid, address, phone, email, occupation, gender, regDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssss", $fullName, $dob, $nid, $address, $phone, $email, $occupation, $gender, $regDate);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
+    } else {
+        echo "<script>alert('Registration failed! Please try again.'); window.location.href='register.php';</script>";
+    }
+
+    $stmt->close();
+}
+?>
+
+
 
 
 </html>
