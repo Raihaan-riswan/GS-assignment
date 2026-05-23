@@ -6,11 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    
-</body>
-</html>
-
-<?php
+    <?php
  include ('config.php');
 
  if(isset($_POST['submit'])){
@@ -27,3 +23,7 @@
         echo"no resident found";
     }
  } 
+ ?>
+</body>
+</html>
+
