@@ -18,7 +18,7 @@
             <a href="Registration.php"><img src="image/add.png" alt="" srcset="">
                 <p>Registration</p>
             </a>
-            <a href="#"><img src="image/loupe.png" alt="" srcset="">
+            <a href="search.php"><img src="image/loupe.png" alt="" srcset="">
                 <p>Search</p>
             </a>
         </div>

@@ -83,6 +83,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             padding: 0;
             color: #333;
         }
+        * {
+            animation: blurPulse 0.5s ease-in-out forwards;
+        }
+
+        @keyframes blurPulse {
+             0% {
+             filter: blur(8px);
+            }
+            100% {
+                filter: blur(0px);
+            }
+}
+
 
         .container {
             max-width: 700px;
