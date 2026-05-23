@@ -73,7 +73,7 @@
             <input type="text" name="Ful_name" placeholder="Full name" aria-label="Full name">
             <input type="text" name="Nic" placeholder="NIC" aria-label="NIC">
             <input type="text" name="Address" placeholder="Address" aria-label="Address">
-            <button type="submit" class="btn">Search</button>
+            <button type="submit" name="submit" value="search" class="btn">Search</button>
         </form>
     </div>
 </body>
