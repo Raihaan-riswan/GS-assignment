@@ -41,16 +41,29 @@
             font-weight: 600;
         }
 
-        .result-card {
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 16px;
-            background: #fcfdff;
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background: #ffffff;
         }
 
-        .result-card p {
-            margin: 8px 0;
+        .results-table th,
+        .results-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .results-table th {
+            background: #0f172a;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .results-table tbody tr:nth-child(even) {
+            background: #f8fafc;
         }
 
         .back-link {
@@ -132,19 +145,36 @@
         <?php endif; ?>
 
         <?php if (!empty($results)): ?>
-            <?php foreach ($results as $row): ?>
-                <div class="result-card">
-                    <p><strong>Resident ID:</strong> <?php echo htmlspecialchars($row['id']); ?></p>
-                    <p><strong>Full Name:</strong> <?php echo htmlspecialchars($row['full_name']); ?></p>
-                    <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($row['dob']); ?></p>
-                    <p><strong>National Identity Number:</strong> <?php echo htmlspecialchars($row['nic']); ?></p>
-                    <p><strong>Address:</strong> <?php echo htmlspecialchars($row['address']); ?></p>
-                    <p><strong>Phone Number:</strong> <?php echo htmlspecialchars($row['phone']); ?></p>
-                    <p><strong>Email:</strong> <?php echo htmlspecialchars($row['email']); ?></p>
-                    <p><strong>Occupation:</strong> <?php echo htmlspecialchars($row['occupation']); ?></p>
-                    <p><strong>Gender:</strong> <?php echo htmlspecialchars($row['gender']); ?></p>
-                </div>
-            <?php endforeach; ?>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Resident ID</th>
+                        <th>Full Name</th>
+                        <th>Date of Birth</th>
+                        <th>NIC</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Occupation</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($results as $row): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['full_name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['dob']); ?></td>
+                            <td><?php echo htmlspecialchars($row['nic']); ?></td>
+                            <td><?php echo htmlspecialchars($row['address']); ?></td>
+                            <td><?php echo htmlspecialchars($row['phone']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td><?php echo htmlspecialchars($row['occupation']); ?></td>
+                            <td><?php echo htmlspecialchars($row['gender']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         <?php endif; ?>
 
         <a href="search.php" class="back-link">Back to Search</a>
