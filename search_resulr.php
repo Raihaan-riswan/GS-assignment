@@ -109,6 +109,43 @@
             word-break: break-word;
         }
 
+        .button {
+            margin-top: 16px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            min-width: 110px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+        }
+
+        .btn[href="modify.php"] {
+            background: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.22);
+        }
+
+        .btn[href="delete.php"] {
+            background: #dc2626;
+            color: #ffffff;
+            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.22);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 20px rgba(15, 23, 42, 0.12);
+        }
+
         .back-link {
             display: inline-block;
             margin-top: 12px;
