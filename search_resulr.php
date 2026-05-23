@@ -232,6 +232,18 @@
                                 <div class="field-value"><?php echo htmlspecialchars($row['gender']); ?></div>
                             </div>
                         </div>
+                        <div class="button">
+                            <?php
+                            session_start();
+                            $_SESSION['row_data'] = $row;
+
+                            ?>
+                            <a href="modify.php" class="btn">Modify</a>
+                            <a href="delete.php" class="btn">Delete</a>
+
+
+
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
