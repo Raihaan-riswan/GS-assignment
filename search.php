@@ -69,7 +69,7 @@
 <body>
     <div class="search-container">
         <h1>Search Resident</h1>
-        <form action="search result.php" method="post" class="search-form">
+        <form action="search_result.php" method="post" class="search-form">
             <input type="text" name="Ful_name" placeholder="Full name" aria-label="Full name">
             <input type="text" name="Nic" placeholder="NIC" aria-label="NIC">
             <input type="text" name="Address" placeholder="Address" aria-label="Address">
