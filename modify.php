@@ -394,6 +394,7 @@ $row = $_SESSION['row_data'] ?? [];
                         <a href="search.php" class="btn btn-ghost">Back to Search</a>
                         <button type="reset" class="btn btn-danger">Clear</button>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="index.php" class="btn btn-ghost">Back to Home</a>
                     </div>
                 </form>
             </section>
