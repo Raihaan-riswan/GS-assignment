@@ -13,5 +13,10 @@
           }
           ?>
           <h1>Grama niladari residential managment system</h1>
+          <form action="modify_process.php" method="post">
+              <h3>Modify Details</h3>
+
+              
+          </form>
 </body>
 </html>
