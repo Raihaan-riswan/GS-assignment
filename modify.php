@@ -31,8 +31,11 @@
 
               <label>Occupation: <input type="text" id="occupation" name="occupation" value="<?php echo $row['occupation']; ?>"></label>
 
-              <label>Gender: <input type="text" id="gender" name="gender" value="<?php echo $row['gender']; ?>">
-                    
+              <label>Gender: <select id="gender" name="gender" value="<?php echo $row['gender']; ?>">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
             
               </label>
 
