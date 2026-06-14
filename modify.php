@@ -22,6 +22,8 @@
               <label>Date of Birth: <input type="text" id="dob" name="dob" value="<?php echo $row['dob']; ?>"></label>
 
               <label>NIC: <input type="text" id="nic" name="nic" value="<?php echo $row['nic']; ?>"></label>
+
+              <label>Address: <input type="text" id="address" name="address" value="<?php echo $row['address']; ?>"></label>
           </form>
 </body>
 </html>
