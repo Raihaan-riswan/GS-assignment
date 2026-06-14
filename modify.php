@@ -26,6 +26,19 @@
               <label>Address: <input type="text" id="address" name="address" value="<?php echo $row['address']; ?>"></label>
 
               <label>Phone: <input type="tel" id="phone" name="phone" value="<?php echo $row['phone']; ?>"></label>
+
+              <label>Email: <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>"></label>
+
+              <label>Occupation: <input type="text" id="occupation" name="occupation" value="<?php echo $row['occupation']; ?>"></label>
+
+              <label>Gender: <input type="text" id="gender" name="gender" value="<?php echo $row['gender']; ?>">
+                    
+            
+              </label>
+
+
+
+
           </form>
 </body>
 </html>
