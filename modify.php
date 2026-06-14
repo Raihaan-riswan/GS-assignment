@@ -37,10 +37,11 @@ $row = $_SESSION['row_data'] ?? [];
             min-height: 100vh;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text);
-            background:
-                radial-gradient(circle at top left, rgba(59, 130, 246, 0.28), transparent 30%),
-                radial-gradient(circle at top right, rgba(14, 165, 233, 0.2), transparent 26%),
-                linear-gradient(160deg, var(--bg-1), var(--bg-2));
+            background-image: url("image/Screenshot 2026-05-19 204159.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: grid;
             place-items: center;
             padding: 24px;
@@ -89,6 +90,7 @@ $row = $_SESSION['row_data'] ?? [];
             font-size: clamp(2rem, 4vw, 3.5rem);
             line-height: 1.05;
             letter-spacing: -0.04em;
+            color: #000000;
         }
 
         .hero p {
@@ -101,12 +103,11 @@ $row = $_SESSION['row_data'] ?? [];
 
         .layout {
             display: grid;
-            grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+            grid-template-columns: minmax(0, 1fr);
             gap: 18px;
             align-items: stretch;
         }
 
-        .summary-card,
         .form-card {
             background: var(--card);
             border: 1px solid var(--card-border);
@@ -118,57 +119,10 @@ $row = $_SESSION['row_data'] ?? [];
             animation: fadeUp 0.7s ease both;
         }
 
-        .summary-card {
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 20px;
-            background:
-                linear-gradient(180deg, rgba(37, 99, 235, 0.94), rgba(15, 23, 42, 0.96));
-            color: #ffffff;
-        }
-
-        .summary-card h2,
         .form-card h2 {
             margin: 0;
             font-size: 1.4rem;
             letter-spacing: -0.02em;
-        }
-
-        .summary-card p {
-            margin: 12px 0 0;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.65;
-        }
-
-        .summary-list {
-            display: grid;
-            gap: 12px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .summary-list li {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            padding: 14px 15px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .summary-list strong {
-            display: block;
-            font-size: 0.95rem;
-        }
-
-        .summary-list span {
-            color: rgba(255, 255, 255, 0.72);
-            font-size: 0.92rem;
-            line-height: 1.45;
         }
 
         .form-card {
@@ -325,14 +279,6 @@ $row = $_SESSION['row_data'] ?? [];
                 padding: 16px;
             }
 
-            .layout {
-                grid-template-columns: 1fr;
-            }
-
-            .summary-card {
-                padding: 22px;
-            }
-
             .form-card {
                 padding: 22px;
             }
@@ -381,34 +327,6 @@ $row = $_SESSION['row_data'] ?? [];
         </section>
 
         <section class="layout">
-            <aside class="summary-card">
-                <div>
-                    <h2>Update details with confidence</h2>
-                    <p>This view keeps the form readable on small screens and highlights the most important fields first.</p>
-                </div>
-
-                <ul class="summary-list">
-                    <li>
-                        <div>
-                            <strong>Responsive layout</strong>
-                            <span>Two columns on larger screens, single column on phones.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <strong>Clear visual hierarchy</strong>
-                            <span>Card sections, soft gradients, and strong contrast for readability.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <strong>Safe data binding</strong>
-                            <span>Existing values are prefilled only when the session contains a resident record.</span>
-                        </div>
-                    </li>
-                </ul>
-            </aside>
-
             <section class="form-card">
                 <div class="form-header">
                     <div>
