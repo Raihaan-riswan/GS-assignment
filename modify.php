@@ -17,7 +17,7 @@
               <h3>Modify Details</h3>
 
 
-              <label>Full Name: <input type="text" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>"></label>
+              <label>Full Name: <input type="text" id="full_name" name="full_name" value="<?php echo $row['full_name']; ?>"></label>
 
               <label>Date of Birth: <input type="text" id="dob" name="dob" value="<?php echo $row['dob']; ?>"></label>
 
