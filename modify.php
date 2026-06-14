@@ -12,5 +12,6 @@
             $row=$_session['row_date'];
           }
           ?>
+          <h1>Grama niladari residential managment system</h1>
 </body>
 </html>
