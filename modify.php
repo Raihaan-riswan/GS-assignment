@@ -16,7 +16,12 @@
           <form action="modify_process.php" method="post">
               <h3>Modify Details</h3>
 
-              
+
+              <label>Full Name: <input type="text" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>"></label>
+
+              <label>Date of Birth: <input type="text" id="dob" name="dob" value="<?php echo $row['dob']; ?>"></label>
+
+              <label>NIC: <input type="text" id="nic" name="nic" value="<?php echo $row['nic']; ?>"></label>
           </form>
 </body>
 </html>
