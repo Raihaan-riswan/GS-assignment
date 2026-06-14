@@ -1,3 +1,64 @@
+<?php
+require_once 'config.php';
+session_start();
+
+$fullName = trim($_POST['Ful_name'] ?? '');
+$nic = trim($_POST['Nic'] ?? '');
+$address = trim($_POST['Address'] ?? '');
+
+$message = '';
+$results = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $fullName === '' && $nic === '' && $address === '') {
+    $message = 'Please enter at least one search value.';
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sql = 'SELECT id, full_name, dob, nic, address, phone, email, occupation, gender, registered_date
+            FROM residents
+            WHERE 1=1';
+
+    $params = [];
+    $types = '';
+
+    if ($fullName !== '') {
+        $sql .= ' AND full_name LIKE ?';
+        $params[] = "%{$fullName}%";
+        $types .= 's';
+    }
+
+    if ($nic !== '') {
+        $sql .= ' AND nic LIKE ?';
+        $params[] = "%{$nic}%";
+        $types .= 's';
+    }
+
+    if ($address !== '') {
+        $sql .= ' AND address LIKE ?';
+        $params[] = "%{$address}%";
+        $types .= 's';
+    }
+
+    $stmt = $conn->prepare($sql);
+
+    if (!$stmt) {
+        die('Database error. Please try again later.');
+    }
+
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $result->num_rows > 0) {
+        $results = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        $message = 'No resident found.';
+    }
+
+    $stmt->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,67 +217,6 @@
     </style>
 </head>
 <body>
-    <?php
-    require_once 'config.php';
-
-    $fullName = trim($_POST['Ful_name'] ?? '');
-    $nic = trim($_POST['Nic'] ?? '');
-    $address = trim($_POST['Address'] ?? '');
-
-    $message = '';
-    $results = [];
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $fullName === '' && $nic === '' && $address === '') {
-        $message = 'Please enter at least one search value.';
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $sql = 'SELECT id, full_name, dob, nic, address, phone, email, occupation, gender, registered_date
-                FROM residents
-                WHERE 1=1';
-
-        $params = [];
-        $types = '';
-
-        if ($fullName !== '') {
-            $sql .= ' AND full_name LIKE ?';
-            $params[] = "%{$fullName}%";
-            $types .= 's';
-        }
-
-        if ($nic !== '') {
-            $sql .= ' AND nic LIKE ?';
-            $params[] = "%{$nic}%";
-            $types .= 's';
-        }
-
-        if ($address !== '') {
-            $sql .= ' AND address LIKE ?';
-            $params[] = "%{$address}%";
-            $types .= 's';
-        }
-
-        $stmt = $conn->prepare($sql);
-
-        if (!$stmt) {
-            die('Database error. Please try again later.');
-        }
-
-        if (!empty($params)) {
-            $stmt->bind_param($types, ...$params);
-        }
-
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result && $result->num_rows > 0) {
-            $results = $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            $message = 'No resident found.';
-        }
-
-        $stmt->close();
-    }
-    ?>
-
     <div class="container">
         <h1>Search Results</h1>
 
@@ -270,11 +270,7 @@
                             </div>
                         </div>
                         <div class="button">
-                            <?php
-                            session_start();
-                            $_SESSION['row_data'] = $row;
-
-                            ?>
+                            <?php $_SESSION['row_data'] = $row; ?>
                             <a href="modify.php" class="btn">Modify</a>
                             <a href="delete.php" class="btn">Delete</a>
 
