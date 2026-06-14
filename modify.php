@@ -24,6 +24,8 @@
               <label>NIC: <input type="text" id="nic" name="nic" value="<?php echo $row['nic']; ?>"></label>
 
               <label>Address: <input type="text" id="address" name="address" value="<?php echo $row['address']; ?>"></label>
+
+              <label>Phone: <input type="tel" id="phone" name="phone" value="<?php echo $row['phone']; ?>"></label>
           </form>
 </body>
 </html>
