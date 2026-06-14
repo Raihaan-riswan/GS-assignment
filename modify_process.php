@@ -28,6 +28,12 @@
 
 
             $sql = "UPDATE residents SET full_name='$full_name', dob='$dob', nic='$nic', address='$address', phone='$phone', email='$email', occupation'='$occupation', gender='$gender' WHERE id='$id'";
+
+            if($conn->query($sql) === TRUE){
+                echo "Record updated successfully";
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
         }
     ?>
 </body>
