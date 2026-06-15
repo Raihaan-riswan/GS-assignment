@@ -11,3 +11,5 @@
 <img src = "image/Modify_page.png">
 <h6>Record update</h6>
 <img src = "image/RecordUpdate_page.png">
+<h6>Delete message</h6>
+<img src = "image/deleteSuccessfull_meg.png">
