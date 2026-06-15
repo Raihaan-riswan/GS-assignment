@@ -15,6 +15,9 @@
 
         $id = $row['id'];
 
+        $sql = "DELETE FROM residents WHERE id = $id";
+        
+
 
     ?>
 </body>
