@@ -1,3 +1,3 @@
 # GS-assignment
-<h1>Home page</h1><br>
+<h6>Home page</h6>
 <img src = "image/Home_page.png">
