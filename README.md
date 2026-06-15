@@ -9,3 +9,5 @@
 <img src = "image/RegisterResult_page.png">
 <h6>Modification page</h6>
 <img src = "image/Modify_page.png">
+<h6>Record update</h6>
+<img src = "image/RecordUpdate_page.png">
