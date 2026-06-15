@@ -16,7 +16,7 @@
         $id = $row['id'];
 
         $sql = "DELETE FROM residents WHERE id = $id";
-         if ($conn->query($sql) === TRUE) {
+         if ($sql) {
             echo "<script>alert('Record deleted successfully'); window.location.href='index.php';</script>";
          } else {
             echo "<script>alert('Error deleting record: " . htmlspecialchars($conn->error) . "'); window.location.href='index.php';</script>";
