@@ -249,11 +249,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
                 <p class="error"><?php echo $genderErr; ?></p>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="regDate">Registered Date</label>
                 <input type="date" id="regDate" name="regDate" value="<?php echo $regDate; ?>">
                 <p id="regDateError" class="error"><?php echo $regDateErr; ?></p>
-            </div>
+            </div> -->
             <div class="button-row">
                 <button type="submit">Submit Registration</button>
             </div>
