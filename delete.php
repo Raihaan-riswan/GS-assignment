@@ -9,8 +9,8 @@
     <?php
         include ('config.php');
         session_start();
-        if(isset($_SESSION['row_datea'])){
-            
+        if(isset($_SESSION['row_data'])){
+            $row = $_SESSION['row_data'];
         }
 
 
