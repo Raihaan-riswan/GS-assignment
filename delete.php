@@ -13,6 +13,8 @@
             $row = $_SESSION['row_data'];
         }
 
+        $id = $row['id'];
+
 
     ?>
 </body>
